@@ -12,18 +12,34 @@
 	<body>
 		<div id="background-image-container"> </div>
 		<div id="login-form-area" class="mdui-shadow-4 mdui-hoverable">
-			<span id="login-form-area-title">Login to WMStudio</span>
-			<div class="mdui-textfield">
-				<i class="mdui-icon material-icons">account_circle</i>
-  				<label class="mdui-textfield-label">User Name</label>
-  				<input class="mdui-textfield-input" type="text"/>
-			</div><br/>
-			<div class="mdui-textfield">
-				<i class="mdui-icon material-icons">code</i>
-  				<label class="mdui-textfield-label">Password</label>
-  				<input class="mdui-textfield-input" type="password"/>
-			</div><br/><br/>
-			<button class="mdui-btn-block mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Login</button>
+				<span id="login-form-area-title">Login to WMStudio</span>
+				<div class="mdui-textfield">
+					<i class="mdui-icon material-icons">account_circle</i>
+					<label class="mdui-textfield-label">User Name</label>
+					<input class="mdui-textfield-input" type="text" id="username-input" name="username"/>
+				</div>
+				<br/>
+				<div class="mdui-textfield">
+					<i class="mdui-icon material-icons">code</i>
+					<label class="mdui-textfield-label">Password</label>
+					<input class="mdui-textfield-input" type="password" id='password-input' name="password"/>
+				</div>
+				<br/>
+				<br/>
+				<button class="mdui-btn-block mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="login-button" >Login</button>
 		</div>
+		<script>
+		var loginButton = document.getElementById('login-button');
+		var username  = document.getElementById('username-input');
+		var password  = document.getElementById('password-input');
+		var param = {};
+		loginButton.onclick = function(){
+			param['username'] = username.value;
+			param['password'] = password.value;
+			$.post("http://45.134.144.34:4580/api/login",param,function(data){
+				alert(data.nickname);
+				});
+		};
+		</script>
 	</body>
 </html>
